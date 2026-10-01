@@ -8,4 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="cor_app">#FF63AAD1</color>
+    <color name="transicao_botton">#2B94CE</color>
 </resources>
