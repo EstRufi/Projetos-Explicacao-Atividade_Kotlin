@@ -174,7 +174,7 @@ fun TelaImc(modifier: Modifier = Modifier) {
                     }
                 }
 
-            }
+            }// EU POSSO USAR UTILIZANDO ALGO CHAMADO DATA CLASS OU O JSON
 
             //var corFundo = Color(87, 155, 111 )
 
@@ -185,7 +185,7 @@ fun TelaImc(modifier: Modifier = Modifier) {
                 .width(600.dp)
                 .height(100.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = corFundo
+//                    containerColor = corFundo
                 ),
                 elevation = CardDefaults.cardElevation(4.dp)
             ) {
