@@ -10,8 +10,9 @@ open class CalculandoIMC(altura: String, peso: String) {
     var peso = peso.toDouble()
 
     fun calculando(): Double{
-
-        var calculo = peso/ (altura*altura)
+        // poderia ter colocado direto na altura colcoando na frente .toDouble
+        var alturaConvertida = altura / 100
+        var calculo = peso/ (alturaConvertida*alturaConvertida)
 
         var result = String.format("%.2f",calculo)
         return calculo

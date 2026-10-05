@@ -10,6 +10,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -18,6 +19,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -40,6 +42,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -132,12 +135,15 @@ fun TelaImc(modifier: Modifier = Modifier) {
                         onValueChange = {textAltura = it
                             Log.i("",textAltura)},
                         singleLine = true,
-                        label = {Text("Altura (em Metros)")},
+                        label = {Text("Altura (cm)")},
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = colorResource(R.color.cor_app),
                             unfocusedBorderColor = colorResource(R.color.cor_app)
                         ),
-                        shape = RoundedCornerShape(10.dp)
+                        shape = RoundedCornerShape(10.dp),
+                        keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Number
+                        )
                     )
 
                     OutlinedTextField(
@@ -150,7 +156,10 @@ fun TelaImc(modifier: Modifier = Modifier) {
                             focusedBorderColor = colorResource(R.color.cor_app),
                             unfocusedBorderColor = colorResource(R.color.cor_app)
                         ),
-                        shape = RoundedCornerShape(10.dp)
+                        shape = RoundedCornerShape(10.dp),
+                        keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Number
+                        )
                     )
                     Button(
                         onClick = {
@@ -176,45 +185,77 @@ fun TelaImc(modifier: Modifier = Modifier) {
 
             }// EU POSSO USAR UTILIZANDO ALGO CHAMADO DATA CLASS OU O JSON
 
-            //var corFundo = Color(87, 155, 111 )
 
-           //corFundo = mudarCorCar(resultado)
 
 //                  --Card Resultado --
             Card(modifier = Modifier
                 .width(600.dp)
                 .height(100.dp),
                 colors = CardDefaults.cardColors(
-//                    containerColor = corFundo
+                   containerColor = mudarCorCard(resultado)
                 ),
-                elevation = CardDefaults.cardElevation(4.dp)
+                elevation = CardDefaults.cardElevation(4.dp),
             ) {
-                Text("${String.format("%.2f",resultado)}")
+                Row(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceEvenly
+
+                ) {
+                    Text(
+                        text = "${String.format("%.2f",resultado)}",
+                        fontSize = 30.sp,
+                        color = Color.White
+                    )
+
+                    Text(
+                        text = "${mudarTexto(resultado)}",
+                        fontSize = 20.sp,
+                        color = Color.White
+                    )
+                }
+
             }
         }
     }
 }
 // Matheus
 
-//@Composable
-//fun mudarCorCar(imc: Double): Color {
-//    var cor: Color = Color.Gray
-//    if(imc == 0.0){
-//        cor = Color(130, 152, 225, 255)
-//    }
-//    else if (imc < 18.5){
-//        cor = Color(255, 0, 0, 255)
-//    }else if(imc < 25){
-//        cor = Color(87, 155, 111 )
-//    }else if(imc < 30){
-//       cor = Color(255, 114, 0, 255)
-//    }else if(imc < 35){
-//        cor = Color(255, 0, 0, 255)
-//    }else if(imc < 40){
-//        cor = Color(255, 0, 0, 255)
-//    }else if(imc > 40){
-//        cor = Color(255, 0, 0, 255)
-//    }
-//
-//    return  cor
-//}
+
+fun mudarCorCard(imc: Double): Color {
+    var cor: Color = Color.Gray
+
+    if(imc == 0.0){
+        cor = Color(0xFF63AAD1)
+    }
+    else if (imc < 18.5){
+        cor = Color(255, 0, 0, 255)
+    }else if(imc < 25){
+        cor = Color(87, 155, 111 )
+    }else if(imc < 30){
+       cor = Color(255, 114, 0, 255)
+    }else if(imc < 35){
+        cor = Color(255, 0, 0, 255)
+    }else if(imc < 40){
+        cor = Color(255, 0, 0, 255)
+    }else if(imc > 40){
+        cor = Color(255, 0, 0, 255)
+    }
+
+    return  cor
+}
+
+fun mudarTexto(imc: Double):String{
+    return when{
+        imc == 0.0 -> "Esperando peso"
+        imc <18.5 -> "Abaixo do Peso"
+        imc < 25.0 -> "Peso Ideal"
+        imc < 30.0 -> "Levemente acima do peso"
+        imc < 35.0 -> "Obesidade Grau I"
+        imc < 40.0 -> "Obesidade Grau II"
+
+        else -> "Obesidade Grau III"
+    }
+
+}
