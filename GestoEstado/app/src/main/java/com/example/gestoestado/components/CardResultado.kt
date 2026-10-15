@@ -54,7 +54,7 @@ fun CardResultado (
                 )
 
                 Text(
-                    text = "$juros",
+                    text = "${String.format("%.2f",juros)}",
                     fontWeight = FontWeight.Bold,
                     color = Color.White,
                     fontSize = 24.sp
@@ -75,7 +75,7 @@ fun CardResultado (
                 )
 
                 Text(
-                    text = "$montante",
+                    text = "${String.format("%.2f", montante)}",
                     fontWeight = FontWeight.Bold,
                     color = Color.White,
                     fontSize = 24.sp
