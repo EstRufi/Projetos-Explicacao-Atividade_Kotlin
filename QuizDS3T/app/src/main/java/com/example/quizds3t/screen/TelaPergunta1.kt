@@ -20,14 +20,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.quizds3t.R
 import com.example.quizds3t.componente.CaixaDeNumeroDePerguntas
 import com.example.quizds3t.componente.CardPergunta
 
-
-@Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun TelaPergunta1Screen(modifier: Modifier = Modifier) {
+fun TelaPergunta1Screen(navController: NavController) {
     Column(
     modifier = Modifier
         .fillMaxSize()

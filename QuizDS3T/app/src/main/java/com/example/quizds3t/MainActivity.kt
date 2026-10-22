@@ -17,6 +17,8 @@ import androidx.navigation.NavHost
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.quizds3t.screen.TelaInicialScreen
+import com.example.quizds3t.screen.TelaPergunta1Screen
 import com.example.quizds3t.ui.theme.QuizDS3TTheme
 
 class MainActivity : ComponentActivity() {
@@ -36,19 +38,23 @@ class MainActivity : ComponentActivity() {
                         exitTransition = {
                             slideOutOfContainer(
                                 towards = AnimatedContentTransitionScope.SlideDirection.Up,
-                                animationSpec = tween(500)
+                                animationSpec = tween(1000)
                             )
                         },
                         enterTransition = {
                             slideIntoContainer(
                                 towards = AnimatedContentTransitionScope.SlideDirection.Up,
-                                animationSpec = tween(500)
+                                animationSpec = tween(1000)
                             )
                         }
                     )  {
-                        composable(route = "telaInicial"){}
+                        composable(route = "telaInicial"){
+                            TelaInicialScreen(navControler)
+                        }
 
-                        composable(route = "pergunta1"){}
+                        composable(route = "pergunta1"){
+                            TelaPergunta1Screen(navControler)
+                        }
                     }
 
 

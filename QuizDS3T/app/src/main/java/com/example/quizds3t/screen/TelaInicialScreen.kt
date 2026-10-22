@@ -19,11 +19,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.quizds3t.R
 
-@Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun TelaInicialScreen(modifier: Modifier = Modifier) {
+fun TelaInicialScreen(navController: NavController) {
     Column(modifier = Modifier
         .fillMaxSize()
         .background(Color(0xff83D8F7)),
@@ -46,7 +46,9 @@ fun TelaInicialScreen(modifier: Modifier = Modifier) {
         )
 
         Button(
-            onClick = {},
+            onClick = {
+                navController.navigate("pergunta1")
+            },
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.Yellow,
                 contentColor = Color.Black
